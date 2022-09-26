@@ -6,7 +6,7 @@
         <div class="sections">
             <div class="section_one">
                 <div class="section_one__logodiv">
-                    <img src="/assets/Sentry-logo.png" alt="logo" srcset="">
+                    <img src="/assets/Sentry-logo-white.png" alt="logo" srcset="">
                 </div>
 
                 <div class="section_one_header">
@@ -29,10 +29,13 @@
             </div>
             <div class="section_two">
                 <div class="section_two__logodiv">
-                    <img src="/assets/Sentry-green.png" alt="logo" srcset="">
+                    <img src="/assets/Sentry-logo-green.png" alt="logo" srcset="">
                 </div>
                 <div class="section_two__signuptext">
                     <h2>Sign Up</h2>
+                    <% if (typeof message !== 'undefined') { %>
+                        <p><%= message.text %></p>
+                      <% } %>
                     <p>Have an account ? <a href="#">Login</a></p>
                 </div>
 
@@ -40,16 +43,16 @@
                     <form action="" method="post">
                         <div class="section_two__forminputs">
                             <label for="username_input">Your name is</label>
-                            <input id="username_input" type="text" name="" id="">
+                            <input id="username_input" type="text" name="username" id="">
 
                             <label for="email_input">Your email is</label>
-                            <input type="email" name="" id="email_input">
+                            <input type="email" name="email_address" id="email_input" >
 
                             <label for="password_input">Password</label>
-                            <input type="password" name="" id="password_input">
+                            <input type="password" name="password" id="password_input">
 
                             <label for="password_confirm">Confirm Password</label>
-                            <input type="password" name="" id="password_confirm">
+                            <input type="password" name="confirm" id="password_confirm">
 
                             <button type="submit" class="section_two__form_button">Create Account</button>
                         </div>
