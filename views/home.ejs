@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <% if (user) {%>
+    <h1>WELCOME BACK <%= user.user_name %></h1>
+    <a href="/account/logout">LOG OUT</a>
+  <% } %>
+</body>
