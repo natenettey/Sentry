@@ -5,8 +5,17 @@
   <title></title>
 </head>
 <body>
-  <% if (user) {%>
+
     <h1>WELCOME BACK <%= user.user_name %></h1>
     <a href="/account/logout">LOG OUT</a>
-  <% } %>
+    <form action="/account/dashboard/upload" method="POST" enctype="multipart/form-data">
+      <!-- <label for="file_name">File Name</label>
+      <input id="file_name" type="text" name="file_name"> -->
+      <br>
+      <label for="file">Upload File</label>
+      <input id = "file" type="file" name="file">
+      <br>
+      <button type="submit">Save</button>
+    </form>
+ 
 </body>
