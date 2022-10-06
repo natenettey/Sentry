@@ -4,6 +4,7 @@ const path = require('path')
 require('dotenv').config()
 const passportRouter = require('./routes/passport_config_routes')
 const dashboardRouter = require('./routes/dashboard_routes')
+const multerRouter = require('./routes/multer_routes')
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -33,6 +34,7 @@ app.use(passport.session());
 
 app.use('/account',passportRouter)
 app.use('/account/dashboard',dashboardRouter)
+app.use('/files',multerRouter)
 
 //use LocalStrategy to check if user is registered
 passport.use(
