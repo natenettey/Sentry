@@ -14,7 +14,7 @@ const checkAunthenticated = (req,res,next)=>{
 
 
 router.get('/home',checkAunthenticated ,dashboard_controller.getdashboard)
-router.post('/upload',upload.single('file'),dashboard_controller.uploadFile)
+// router.post('/upload',upload.single('file'),dashboard_controller.uploadFile)
 
 
 
