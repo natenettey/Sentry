@@ -22,14 +22,15 @@ exports.uploadFile = async (req,res)=>{
    
 }
 
-exports.downloadFile = (req,res)=>{
+exports.downloadFile = async (req,res)=>{
     try {
-        const file = fileUpload.findById(req.params.id)
+        var file = await fileUpload.findById(req.params.id)
         console.log(file)
     } catch (error) {
         if(error){
             console.log(error)
         }
     }
+    res.download(file.filePath, file.originalName)
     
 }
