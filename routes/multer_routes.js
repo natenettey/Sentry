@@ -7,6 +7,6 @@ const multer_controller = require('../controllers/multer_controller')
 router.post('/upload',upload.single('file'),multer_controller.uploadFile)
 router.get('/download/:id',multer_controller.passwordFrom)
 router.post('/download/:id',multer_controller.downloadFile)
-
+router.get('/send',multer_controller.sendMail)
 
 module.exports = router
