@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs/dist/bcrypt')
 const fileUpload = require ('../models/file')
+const nodemailer = require('nodemailer')
 
 //upload file
 exports.uploadFile = async (req,res)=>{
@@ -51,4 +52,37 @@ exports.downloadFile = async (req,res)=>{
         }
       })
    
+}
+
+//send mail
+exports.sendMail = (req,res)=>{
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          type: 'OAuth2',
+          user: process.env.MAIL_USERNAME,
+          pass: process.env.MAIL_PASSWORD,
+          clientId: process.env.CLIENT_ID,
+          clientSecret: process.env.CLIENT_SECRET,
+          refreshToken: process.env.OAUTH_REFRESH_TOKEN
+        }
+      });
+
+      let mailOptions = {
+        from: 'techdify.mail@gmail.com',
+        to: 'niibobby4@gmail.com', 
+        subject: 'Nodemailer Project',
+        text: 'Hi from your nodemailer project'
+      };
+
+      transporter.sendMail(mailOptions, function(err, data) {
+        if (err) {
+          console.log("Error " + err);
+        } else {
+          console.log("Email sent successfully");
+        }
+      });
+
+      res.send("done")
 }
