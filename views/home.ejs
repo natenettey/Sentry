@@ -1,17 +1,176 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
+<!-- include header -->
+<%- include('includes/dashboard_header') %>
+<!-- /include header -->
 <body>
+  <div class="main_container">
+    <div class="navbar">
+        <nav>
+            <div class="navbar_logo">
+                <img src="/assets/Sentry-logo-white.png" alt="" srcset="">
+            </div>
+            
+            <div class="nav_elements">
+                <div class="nav_elements__div">
+                    <ul id="nav_elements__ul"class="nav_elements__ul display_class">
+                        <li><a href="http:">Home</a></li>
+                        <li><a href="http:">Share List</a></li>
+                        <li><a href="http:">Account</a></li>
+                    </ul>
+                </div>
+                
+                <div class="avatar_div">
+                    <img src="/assets/gamer.png" alt="avatar" srcset="">
+                </div>
+                
+                <div class="menu_icon" id="icon">
+                    <img src="/assets/menu_icon.png" alt="" srcset="">
+                </div>
+                
+            </div>
+            
+        </nav>
+    </div>
+    <header>
+        <div class="header_content">
+            <div class="header_welcome-text">
+                <h2>
+                    Hey <%= user.user_name %>,
+                </h2>
+                <p class="header_subtext">
+                    Welcome, let's get started.
+                </p>
+            </div>
+            
+        </div>
+        
+        <div class="header_form">
+            <div class="header_form-card">
+                <div class="header_form-card__one">
+                    <div class="header_form-card__one__text">
+                        <h3>Upload your file to begin</h3>
+                        <h3>Then set a password</h3>
+                    </div>
 
-    <h1>WELCOME BACK <%= user.user_name %></h1>
+                    <div class="header_form-card__one__form">
+                        <form action="/files/upload" method="POST" enctype="multipart/form-data">
+                            <label for="file_name">File Name</label>
+                             
+                            <br>
+                            
+                            <input id = "file" type="file" name="file" required="true">
+                            <br>
+                            
+                            <input id = "password" type="password" name="password" required="true">
+                            
+                            <button type="submit" class="submit">Save</button>
+                          </form>
+                    </div>
+                </div>
+
+                <div class="header_form-card__two">
+                    <div class="header_form-card__two_image">
+                        <img src="/assets/upload-image.jpg" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="inner_container">
+        <!-- <div class="no_uploads">
+            <img src="/assets/nofiles.jpg" alt="" srcset="">
+        
+            <p>Looks like you haven't uploaded any files yet</p>
+        </div> -->
+
+
+        <% if(typeof docs =='undefined'){ %>
+            <div class="no_uploads">
+                <img src="/assets/nofiles.jpg" alt="" srcset="">
+            
+                <p>Looks like you haven't uploaded any files yet</p>
+            </div>
+        <% } else{ %>  
+            <% docs.forEach(doc=>{%>
+                
+
+                  <div class="file_output">
+                    <div class="file_output__card">
+                        <div class="file_output__card_image">
+                            <img src="/assets/folder.png" alt="">
+                        </div>
+                        <div class="fie_output__card_details">
+                            <div class="file_output__card_text">
+                                <p><%=doc.originalName %></p>
+                            </div>
+                            <div class="file_output__card_shares">
+                               <a href=""><img src="./mail.png" alt="">Mail to  -</a> 
+                                <a href="<%=doc.url%>"><img src="./broken-link.png" alt="">Copy Link   -</a>
+                                <a href=""><img src="./delete.png" alt="">Delete File </a>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    
+                </div>
+            <% }); %>
+        <% } %>
+
+
+
+
+
+
+
+
+        <!-- <% docs.forEach(doc=>{%>
+        
+            <li>
+              <%=doc.originalName %>
+              <br>
+              <a href='<%=doc.url%>' target="_blank" rel="noopener noreferrer">link</a>
+            </li>
+            
+            <% })%> -->
+
+        <!-- <div class="file_output">
+            <div class="file_output__card">
+                <div class="file_output__card_image">
+                    <img src="/assets/folder.png" alt="">
+                </div>
+                <div class="fie_output__card_details">
+                    <div class="file_output__card_text">
+                        <p>Name_of_file.docx</p>
+                    </div>
+                    <div class="file_output__card_shares">
+                       <a href=""><img src="./mail.png" alt="">Mail to .</a> 
+                        <a href=""><img src="./broken-link.png" alt="">Copy Link</a>
+                        <a href=""><img src="./delete.png" alt="">Delete File</a>
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div> -->
+    </div>
+    
+
+    
+
+     
+
+
+
+</div>
+
+    <!-- <h1>WELCOME BACK <%= user.user_name %></h1>
     <a href="/account/logout">LOG OUT</a>
     <form action="/files/upload" method="POST" enctype="multipart/form-data">
       <!-- <label for="file_name">File Name</label>
       <input id="file_name" type="text" name="file_name"> -->
-      <br>
+      <!-- <br>
       <label for="file">Upload File</label>
       <input id = "file" type="file" name="file" required="true">
       <br>
@@ -35,5 +194,7 @@
     
     
   
-    <a href="/files/send">send</a>
+    <a href="/files/send">send</a> -->
 </body>
+<script src="/js/script.js"></script>
+</html>
