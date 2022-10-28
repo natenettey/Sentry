@@ -11,6 +11,10 @@ const fileSchema  = new Schema({
         type:String,
         required:true
     },
+    encryptedpassword:{
+        type:String,
+        required:true
+    },
     password:{
         type:String,
         required:true
