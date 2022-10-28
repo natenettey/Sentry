@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs/dist/bcrypt')
 const fileUpload = require ('../models/file')
 const nodemailer = require('nodemailer')
-
 //upload file
 exports.uploadFile = async (req,res)=>{
    console.log(req.file,req.user.user_name)
@@ -12,7 +11,8 @@ exports.uploadFile = async (req,res)=>{
       user:name,
       filePath:req.file.path,
       originalName:req.file.originalname,
-      password:cryptedPassword
+      encryptedpassword:cryptedPassword,
+      password:req.body.password
    }).save(error=>{
       if(error){
          console.log(error)
@@ -85,4 +85,18 @@ exports.sendMail = (req,res)=>{
       });
 
       res.send("done")
+}
+
+exports.populateMailForm =async (req,res)=>{
+  console.log("path",req.body.key)
+  await fileUpload.findById(req.body.key).then(
+    data=>{
+      console.log(data)
+      res.json({path:data})
+    }
+  )
+
+    
+ 
+  
 }
