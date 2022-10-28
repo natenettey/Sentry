@@ -1,7 +1,26 @@
 <!-- include header -->
 <%- include('includes/dashboard_header') %>
 <!-- /include header -->
+
+
 <body>
+    <div id="form_modal" class="modal displayModal_class">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="mailto_form">
+            <form class="mail_form"action="" method="post">
+                <label for="">Mail Address</label>
+                <input type="email" name="" >
+                <label for="">Message</label>
+                <textarea id="formModal_textarea"name=""  cols="30" rows="10" value=""></textarea>
+                <button type="submit" class="mail_submit_button">Send</button>
+            </form>
+          </div>
+        </div>
+      
+      </div>
   <div class="main_container">
     <div class="navbar">
         <nav>
@@ -84,7 +103,7 @@
         </div> -->
 
 
-        <% if(typeof docs =='undefined'){ %>
+        <% if(!docs){ %>
             <div class="no_uploads">
                 <img src="/assets/nofiles.jpg" alt="" srcset="">
             
@@ -104,9 +123,9 @@
                                 <p><%=doc.originalName %></p>
                             </div>
                             <div class="file_output__card_shares">
-                               <a href=""><img src="./mail.png" alt="">Mail to  -</a> 
-                                <a href="<%=doc.url%>"><img src="./broken-link.png" alt="">Copy Link   -</a>
-                                <a href=""><img src="./delete.png" alt="">Delete File </a>
+                               <a href="#" id="mail" onclick="passInfo('<%=doc._id%>')" title="<%=doc.filePath%>" >Mail to  -</a> 
+                                <a href="<%=doc.url%>">Copy Link   -</a>
+                                <a href="" >Delete File </a>
                             </div>
                         </div>
         
